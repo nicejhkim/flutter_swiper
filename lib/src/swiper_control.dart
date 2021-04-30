@@ -80,8 +80,12 @@ class SwiperControl extends SwiperPlugin {
         key: key,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          buildButton(config, prevColor, iconPrevious, 0, true),
-          buildButton(config, nextColor, iconNext, 0, false)
+          (config.loop == false && config.activeIndex! == 0)
+              ? SizedBox()
+              : buildButton(config, prevColor, iconPrevious, 0, true),
+          (config.loop == false && config.activeIndex == config.itemCount! - 1)
+              ? SizedBox()
+              : buildButton(config, nextColor, iconNext, 0, false)
         ],
       );
     } else {
